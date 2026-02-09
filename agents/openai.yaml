@@ -1,0 +1,4 @@
+interface:
+  display_name: "Admiralty"
+  short_description: "Issue sailing orders for Nelson missions"
+  default_prompt: "Use $admiralty to draft structured sailing orders from a task description."
