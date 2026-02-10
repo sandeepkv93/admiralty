@@ -5,7 +5,7 @@ description: Draft structured sailing orders for a Nelson mission from a task de
 
 # Admiralty
 
-Analyse a raw task description and produce complete, copy-paste-ready sailing orders and a battle plan for `/nelson`.
+Analyse a raw task description and produce complete, copy-paste-ready sailing orders and a battle plan for downstream execution workflows (including Nelson).
 
 ## Phase 1: Reconnoitre
 
