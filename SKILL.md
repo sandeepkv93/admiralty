@@ -18,6 +18,15 @@ Mandatory repository survey before planning:
 - Summarize the current state in recon notes and reference that summary in assumptions/scope.
 - If the target codebase is ambiguous (multiple repos), identify candidates and ask the user to confirm the repo before continuing.
 
+Minimum recon evidence to capture:
+
+- Repository root path and active branch.
+- `git status --short` summary and whether the worktree is dirty.
+- Top-level project layout and primary entrypoints.
+- Build/test/lint commands discovered from repo files.
+- Dependency/runtime manifests discovered (for example: `go.mod`, `package.json`, `pyproject.toml`, `Cargo.toml`, CI workflows).
+- Existing regression boundaries (critical behavior that must not change).
+
 - **Core intent**: State the task's purpose in one sentence.
 - **Key entities**: List systems, files, APIs, services, and domains involved.
 - **Stated constraints**: Note any explicit requirements, deadlines, or limitations the user mentioned.
@@ -28,6 +37,7 @@ Gap handling:
 
 - If more than 2 critical gaps exist: ask up to 3 targeted questions. Each question must include a sensible default so the user can accept quickly.
 - If 0-2 gaps exist: fill with conservative defaults from `references/assessment-rubrics.md` section "Common Defaults" and note assumptions in the output.
+- If recon evidence is incomplete for a code task, do not finalize orders; ask focused questions or continue reconnaissance.
 
 ## Phase 2: Assess
 
@@ -103,9 +113,22 @@ Task ID: <T-n>
 - Dependencies: <T-n list or "none">
 - Threat tier (0-3): <tier>
 - File ownership (if code): <file paths>
+- Primary risk: <top failure mode>
+- Mitigation: <how risk is controlled>
 - Validation required: <evidence needed>
 - Rollback note required: yes/no
 ```
+
+## Pre-Signal Sanity Checks
+
+Before signaling final orders, verify:
+
+- All referenced files/paths are consistent with repository reconnaissance.
+- Every task has exactly one owner and explicit dependencies.
+- No circular or impossible dependency chain in task ordering.
+- Success metric and stop criteria are measurable.
+- Validation evidence is defined for every task.
+- For Station 1+, include explicit regression checks for critical existing behavior.
 
 ## Phase 4: Signal
 
@@ -119,7 +142,10 @@ Assessment:
 - Threat Tier: Station <0-3>
 - Execution Mode: <single-session | subagents | agent-team>
 - Team: 1 admiral + <n> captains [+ 1 red-cell navigator]
+- Confidence: <High | Medium | Low>
+- Unknowns: <critical unknowns or "none">
 - Assumptions: <list any defaults applied>
+- Recon evidence: <repo, branch, status, key manifests/commands>
 
 Sailing orders:
 - Outcome: ...
@@ -151,6 +177,8 @@ Task ID: T-1
 - Dependencies: ...
 - Threat tier (0-3): ...
 - File ownership (if code): ...
+- Primary risk: ...
+- Mitigation: ...
 - Validation required: ...
 - Rollback note required: ...
 
