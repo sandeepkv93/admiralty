@@ -11,6 +11,13 @@ Analyse a raw task description and produce complete, copy-paste-ready sailing or
 
 Extract intelligence from the user's task description.
 
+Mandatory repository survey before planning:
+
+- Before drafting orders, inspect the entire target codebase to understand the current state (project layout, key modules, existing workflows, tests, and active git status).
+- Do not rely only on the prompt description when code exists; ground the plan in observed repository reality.
+- Summarize the current state in recon notes and reference that summary in assumptions/scope.
+- If the target codebase is ambiguous (multiple repos), identify candidates and ask the user to confirm the repo before continuing.
+
 - **Core intent**: State the task's purpose in one sentence.
 - **Key entities**: List systems, files, APIs, services, and domains involved.
 - **Stated constraints**: Note any explicit requirements, deadlines, or limitations the user mentioned.
